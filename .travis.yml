@@ -19,5 +19,5 @@ script:
 after_success:
   - docker run --name spring-boot-in-docker-demo -d -p 8888:8080 superhao/spring-boot-in-docker
   - docker ps -a
-  - curl localhost:8888/hello
+  - curl http://127.0.0.1:8888/hello
   - docker stop spring-boot-in-docker-demo
