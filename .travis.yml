@@ -8,6 +8,10 @@ services:
 
 sudo: required
 
+cache:
+  directories:
+    - $HOME/.m2
+
 install:
   - echo "maven install"
   - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
@@ -19,5 +23,6 @@ script:
 after_success:
   - docker run --name spring-boot-in-docker-demo -d -p 127.0.0.1:80:8080 superhao/spring-boot-in-docker
   - docker ps -a
+  - sleep 10
   - curl http://127.0.0.1/hello
   - docker stop spring-boot-in-docker-demo
